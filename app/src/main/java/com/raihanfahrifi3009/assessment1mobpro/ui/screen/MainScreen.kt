@@ -153,6 +153,15 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             Text(text = stringResource(R.string.konversi))
         }
 
+        if (result.isNotEmpty()) {
+            Text(
+                text = "${stringResource(R.string.hasil)}: $result",
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(top = 24.dp)
+            )
+        }
+
 
     }
 }
