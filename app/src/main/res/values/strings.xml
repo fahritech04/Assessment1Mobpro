@@ -7,4 +7,5 @@
     <string name="inputdolar">Masukkan Dolar (USD)</string>
     <string name="konversi">Konversi</string>
     <string name="hasil">Hasil</string>
+    <string name="showerror">Masukkan angka yang valid!</string>
 </resources>

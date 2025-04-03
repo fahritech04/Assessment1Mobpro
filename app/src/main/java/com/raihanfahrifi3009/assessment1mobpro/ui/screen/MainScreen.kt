@@ -162,6 +162,14 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             )
         }
 
+        if (showError) {
+            Text(
+                text = stringResource(R.string.showerror),
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+
 
     }
 }
