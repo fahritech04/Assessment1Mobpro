@@ -156,10 +156,10 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
                     val amount = inputValue.toFloat()
                     result = if (isRupiahToDollar) {
                         val usdAmount = amount / exchangeRate
-                        formatCurrency(usdAmount, isDollar = true)
+                        formatCurrency(usdAmount, isDollar = true, context)
                     } else {
                         val rupiahAmount = amount * exchangeRate
-                        formatCurrency(rupiahAmount, isDollar = false)
+                        formatCurrency(rupiahAmount, isDollar = false, context)
                     }
                     showError = false
                 } catch (e: NumberFormatException) {
@@ -194,8 +194,7 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
                             context = context,
                             message = context.getString(R.string.bagikan_template, result)
                         )
-                    },
-                    modifier = Modifier.fillMaxWidth()
+                    }
                 ) {
                     Text(text = stringResource(R.string.bagikan))
                 }
@@ -207,7 +206,7 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
     }
 }
 
-fun formatCurrency(amount: Float, isDollar: Boolean): String {
+fun formatCurrency(amount: Float, isDollar: Boolean, context: Context): String {
     val decimalFormat = if (isDollar) {
         DecimalFormat("#,##0.00", DecimalFormatSymbols(Locale.US))
     } else {
@@ -215,9 +214,9 @@ fun formatCurrency(amount: Float, isDollar: Boolean): String {
     }
 
     return if (isDollar) {
-        "USD ${decimalFormat.format(amount)}"
+        "${context.getString(R.string.dolar)} ${decimalFormat.format(amount)}"
     } else {
-        "Rp ${decimalFormat.format(amount)}"
+        "${context.getString(R.string.rupiah)} ${decimalFormat.format(amount)}"
     }
 }
 
