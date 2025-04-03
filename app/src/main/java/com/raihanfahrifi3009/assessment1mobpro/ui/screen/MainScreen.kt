@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -92,16 +93,26 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             modifier = Modifier.padding(bottom = 16.dp)
         ) {
             RadioButton(
-                selected = true,
-                onClick = {}
+                selected = isRupiahToDollar,
+                onClick = {
+                    isRupiahToDollar = true
+                    inputValue = ""
+                    result = ""
+                    showError = false
+                }
             )
             Text(text = stringResource(R.string.rptousd), Modifier.padding(start = 4.dp))
 
             Spacer(Modifier.width(16.dp))
 
             RadioButton(
-                selected = true,
-                onClick = {}
+                selected = !isRupiahToDollar,
+                onClick = {
+                    isRupiahToDollar = false
+                    inputValue = ""
+                    result = ""
+                    showError = false
+                }
             )
             Text(text = stringResource(R.string.usdtorp), Modifier.padding(start = 4.dp))
         }
@@ -119,6 +130,28 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             isError = showError,
             modifier = Modifier.fillMaxWidth()
         )
+
+        Button(
+            onClick = {
+                try {
+                    val amount = inputValue.toFloat()
+                    result = if (isRupiahToDollar) {
+                        "%.2f USD".format(amount / exchangeRate)
+                    } else {
+                        "%.0f IDR".format(amount * exchangeRate)
+                    }
+                    showError = false
+                } catch (e: NumberFormatException) {
+                    showError = true
+                    result = ""
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp)
+        ) {
+            Text(text = stringResource(R.string.konversi))
+        }
 
 
     }
