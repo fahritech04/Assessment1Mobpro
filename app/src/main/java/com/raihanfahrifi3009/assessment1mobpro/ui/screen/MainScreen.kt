@@ -39,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.raihanfahrifi3009.assessment1mobpro.R
 import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,9 +149,11 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
                 try {
                     val amount = inputValue.toFloat()
                     result = if (isRupiahToDollar) {
-                        "%.2f USD".format(amount / exchangeRate)
+                        val usdAmount = amount / exchangeRate
+                        formatCurrency(usdAmount, isDollar = true)
                     } else {
-                        "%.0f IDR".format(amount * exchangeRate)
+                        val rupiahAmount = amount * exchangeRate
+                        formatCurrency(rupiahAmount, isDollar = false)
                     }
                     showError = false
                 } catch (e: NumberFormatException) {
@@ -173,6 +178,20 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
         }
 
 
+    }
+}
+
+fun formatCurrency(amount: Float, isDollar: Boolean): String {
+    val decimalFormat = if (isDollar) {
+        DecimalFormat("#,##0.00", DecimalFormatSymbols(Locale.US))
+    } else {
+        DecimalFormat("#,##0", DecimalFormatSymbols(Locale("id", "ID")))
+    }
+
+    return if (isDollar) {
+        "USD ${decimalFormat.format(amount)}"
+    } else {
+        "Rp ${decimalFormat.format(amount)}"
     }
 }
 
