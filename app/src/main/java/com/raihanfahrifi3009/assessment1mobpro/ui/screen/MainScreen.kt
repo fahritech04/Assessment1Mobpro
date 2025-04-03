@@ -14,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -26,7 +29,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,10 +74,10 @@ fun MainScreen(){
 
 @Composable
 fun CurrencyConverterScreen(modifier: Modifier = Modifier){
-    var inputValue by remember { mutableStateOf("") }
-    var isRupiahToDollar by remember { mutableStateOf(true) }
-    var result by remember { mutableStateOf("") }
-    var showError by remember { mutableStateOf(false) }
+    var inputValue by rememberSaveable { mutableStateOf("") }
+    var isRupiahToDollar by rememberSaveable { mutableStateOf(true) }
+    var result by rememberSaveable { mutableStateOf("") }
+    var showError by rememberSaveable { mutableStateOf(false) }
     val exchangeRate = 16500f // 1 USD = 16,500 IDR
 
     Column(
@@ -127,6 +130,13 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
                 Text(if (isRupiahToDollar) stringResource(R.string.inputrupiah) else stringResource(R.string.inputdolar))
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            trailingIcon = {
+                IconPicker(
+                    showError,
+                    if (isRupiahToDollar) "Rp" else "$"
+                )
+            },
+            supportingText = { ErrorHint(showError) },
             isError = showError,
             modifier = Modifier.fillMaxWidth()
         )
@@ -162,15 +172,23 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             )
         }
 
-        if (showError) {
-            Text(
-                text = stringResource(R.string.showerror),
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-        }
 
+    }
+}
 
+@Composable
+fun IconPicker(isError: Boolean, unit: String) {
+    if (isError) {
+        Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
+    } else {
+        Text(text = unit)
+    }
+}
+
+@Composable
+fun ErrorHint(isError: Boolean) {
+    if (isError) {
+        Text(text = stringResource(R.string.showerror))
     }
 }
 
