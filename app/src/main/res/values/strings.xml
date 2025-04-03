@@ -4,7 +4,7 @@
     <string name="rptousd">Rupiah ke Dolar</string>
     <string name="usdtorp">Dolar ke Rupiah</string>
     <string name="inputrupiah">Masukkan Rupiah (IDR)</string>
-    <string name="inputdolar">Masukkan Dolar (USD)</string>
+    <string name="inputdolar">Masukkan Dollar (USD)</string>
     <string name="konversi">Konversi</string>
     <string name="hasil">Hasil</string>
     <string name="showerror">Masukkan angka yang valid!</string>
