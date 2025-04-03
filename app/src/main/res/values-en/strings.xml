@@ -10,7 +10,7 @@
     <string name="hasil">Result</string>
     <string name="showerror">Enter a valid number!</string>
     <string name="bagikan">Share</string>
-    <string name="bagikan_template">Currency conversion result:\\n%s</string>
+    <string name="bagikan_template">Currency conversion result: %s</string>
     <string name="rupiah">Rp</string>
     <string name="dolar">$</string>
     <string name="tentang_aplikasi">About the App</string>

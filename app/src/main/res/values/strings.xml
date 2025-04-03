@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Assessment 1 Mobpro</string>
-    <string name="title">Konverter Rupiah ↔ Dolar</string>
-    <string name="rptousd">Rupiah ke Dolar</string>
+    <string name="title">Konverter Rupiah ↔ Dollar</string>
+    <string name="rptousd">Rupiah ke Dollar</string>
     <string name="usdtorp">Dolar ke Rupiah</string>
     <string name="inputrupiah">Masukkan Rupiah (IDR)</string>
     <string name="inputdolar">Masukkan Dollar (USD)</string>
@@ -9,7 +9,7 @@
     <string name="hasil">Hasil</string>
     <string name="showerror">Masukkan angka yang valid!</string>
     <string name="bagikan">Bagikan</string>
-    <string name="bagikan_template">Hasil konversi mata uang:\n%s</string>
+    <string name="bagikan_template">Hasil konversi mata uang: %s</string>
 
     <string name="rupiah">Rp</string>
     <string name="dolar">$</string>
