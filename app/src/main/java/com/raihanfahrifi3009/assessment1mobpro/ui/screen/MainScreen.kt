@@ -7,10 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -68,6 +72,27 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(bottom = 24.dp)
         )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(bottom = 16.dp)
+        ) {
+            RadioButton(
+                selected = true,
+                onClick = {}
+            )
+            Text(text = stringResource(R.string.rptousd), Modifier.padding(start = 4.dp))
+
+            Spacer(Modifier.width(16.dp))
+
+            RadioButton(
+                selected = true,
+                onClick = {}
+            )
+            Text(text = stringResource(R.string.usdtorp), Modifier.padding(start = 4.dp))
+        }
+
+
     }
 }
 
