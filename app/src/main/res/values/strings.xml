@@ -3,4 +3,6 @@
     <string name="title">Konverter Rupiah ↔ Dolar</string>
     <string name="rptousd">Rupiah ke Dolar</string>
     <string name="usdtorp">Dolar ke Rupiah</string>
+    <string name="inputrupiah">Masukkan Rupiah (IDR)</string>
+    <string name="inputdolar">Masukkan Dolar (USD)</string>
 </resources>

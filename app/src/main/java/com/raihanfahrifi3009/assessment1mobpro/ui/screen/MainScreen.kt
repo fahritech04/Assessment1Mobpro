@@ -10,19 +10,27 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.raihanfahrifi3009.assessment1mobpro.R
@@ -62,6 +70,12 @@ fun MainScreen(){
 
 @Composable
 fun CurrencyConverterScreen(modifier: Modifier = Modifier){
+    var inputValue by remember { mutableStateOf("") }
+    var isRupiahToDollar by remember { mutableStateOf(true) }
+    var result by remember { mutableStateOf("") }
+    var showError by remember { mutableStateOf(false) }
+    val exchangeRate = 16500f // 1 USD = 16,500 IDR
+
     Column(
         modifier = modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.Center,
@@ -91,6 +105,20 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
             )
             Text(text = stringResource(R.string.usdtorp), Modifier.padding(start = 4.dp))
         }
+
+        OutlinedTextField(
+            value = inputValue,
+            onValueChange = {
+                inputValue = it
+                showError = false
+            },
+            label = {
+                Text(if (isRupiahToDollar) stringResource(R.string.inputrupiah) else stringResource(R.string.inputdolar))
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            isError = showError,
+            modifier = Modifier.fillMaxWidth()
+        )
 
 
     }
