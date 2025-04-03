@@ -1,5 +1,8 @@
 package com.raihanfahrifi3009.assessment1mobpro.ui.screen
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -33,6 +36,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -82,6 +86,8 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
     var result by rememberSaveable { mutableStateOf("") }
     var showError by rememberSaveable { mutableStateOf(false) }
     val exchangeRate = 16500f // 1 USD = 16,500 IDR
+
+    val context = LocalContext.current
 
     Column(
         modifier = modifier.fillMaxSize().padding(16.dp),
@@ -169,12 +175,32 @@ fun CurrencyConverterScreen(modifier: Modifier = Modifier){
         }
 
         if (result.isNotEmpty()) {
-            Text(
-                text = "${stringResource(R.string.hasil)}: $result",
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.primary,
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(top = 24.dp)
-            )
+            ) {
+                Text(
+                    text = "${stringResource(R.string.hasil)}: $result",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(top = 24.dp)
+                )
+
+                Spacer(modifier = Modifier.padding(8.dp))
+
+                Button(
+                    onClick = {
+                        shareData(
+                            context = context,
+                            message = context.getString(R.string.bagikan_template, result)
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = stringResource(R.string.bagikan))
+                }
+            }
+
         }
 
 
@@ -192,6 +218,17 @@ fun formatCurrency(amount: Float, isDollar: Boolean): String {
         "USD ${decimalFormat.format(amount)}"
     } else {
         "Rp ${decimalFormat.format(amount)}"
+    }
+}
+
+@SuppressLint("QueryPermissionsNeeded")
+private fun shareData(context: Context, message: String) {
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    if (shareIntent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(shareIntent)
     }
 }
 

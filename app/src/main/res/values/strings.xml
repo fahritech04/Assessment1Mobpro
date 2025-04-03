@@ -8,4 +8,6 @@
     <string name="konversi">Konversi</string>
     <string name="hasil">Hasil</string>
     <string name="showerror">Masukkan angka yang valid!</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template">Hasil konversi mata uang:\n%s</string>
 </resources>
