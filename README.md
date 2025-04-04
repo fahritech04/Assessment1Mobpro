@@ -9,10 +9,6 @@ catatan:
 
 https://github.com/fahritech04/Assessment1Mobpro.git
 
-### Link Google Drive
-
-(diisi link Google Drive kelompok PA yang telah disiapkan oleh Tim PA)
-
 ### Susunan Tim
 
 Nama                    | Username Github   | Posisi       | NIM         |
