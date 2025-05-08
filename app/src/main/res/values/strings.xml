@@ -14,7 +14,7 @@
     <string name="rupiah">Rp</string>
     <string name="dolar">$</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="copyright">Konverter Rupiah-Dolar merupakan sebuah aplikasi Android untuk mengkonversi nilai mata uang antara Rupiah (IDR) dan Dolar AS (USD). Pengguna dapat menginput nilai dalam Rupiah untuk dikonversi ke Dolar, atau sebaliknya.\n\nAplikasi ini dibuat untuk Assessment 1 Mobpro.\n\nCopyright 2025 Muhammad Raihan Fahrifi.\nAll rights reserved.</string>
+    <string name="copyright">Konverter Rupiah-Dolar merupakan sebuah aplikasi Android untuk mengkonversi nilai mata uang antara Rupiah (IDR) dan Dolar AS (USD). Pengguna dapat menginput nilai dalam Rupiah untuk dikonversi ke Dolar, atau sebaliknya. Namun untuk saat ini, nilai kurs mata uang masih statis. Kemudian ada beberapa List Bank yang berada di Indonesia, baik yang dikelolah oleh Pemerintah maupun Swasta. \n\nAplikasi ini dibuat untuk Assessment Mobpro.\n\nCopyright 2025 Muhammad Raihan Fahrifi.\nAll rights reserved</string>
     <string name="kembali">Kembali</string>
 
     <string name="bank">Bank</string>

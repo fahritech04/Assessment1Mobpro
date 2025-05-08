@@ -14,7 +14,7 @@
     <string name="rupiah">Rp</string>
     <string name="dolar">$</string>
     <string name="tentang_aplikasi">About the App</string>
-    <string name="copyright">Rupiah-Dollar Converter is an Android application to convert currency values between Rupiah (IDR) and US Dollar (USD). Users can input values in Rupiah to be converted to Dollars, or vice versa.\n\nThis application is made for Assessment 1 Mobpro.\n\nCopyright 2025 Muhammad Raihan Fahrifi.\nAll rights reserved.</string>
+    <string name="copyright">Rupiah-Dollar Converter is an Android application to convert currency values ​​between Rupiah (IDR) and US Dollars (USD). Users can input the value in Rupiah to be converted to Dollars, or vice versa. However, for now, the exchange rate is still static. Then there are several List of Banks in Indonesia, both managed by the Government and Private. \n\nThis application is made for Mobpro Assessment.\n\nCopyright 2025 Muhammad Raihan Fahrifi.\nAll rights reserved</string>
     <string name="kembali">Return</string>
     <string name="bank">Bank</string>
     <string name="data_bank">Bank Data</string>
