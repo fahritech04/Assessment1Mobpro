@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.raihanfahrifi3009.assessment1mobpro.model.BankData
 
 
-@Database(entities = [BankData::class], version = 1, exportSchema = false)
+@Database(entities = [BankData::class], version = 2, exportSchema = false)
 abstract class BankDataDb : RoomDatabase(){
 
     abstract val dao: BankDataDAO
@@ -26,7 +26,9 @@ abstract class BankDataDb : RoomDatabase(){
                         context.applicationContext,
                         BankDataDb::class.java,
                         "databank.db"
-                    ).build()
+                    )
+                    .fallbackToDestructiveMigration()
+                    .build()
                     INSTANCE = instance
                 }
                 return instance

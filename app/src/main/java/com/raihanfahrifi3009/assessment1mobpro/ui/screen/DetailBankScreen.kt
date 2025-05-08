@@ -1,7 +1,10 @@
 package com.raihanfahrifi3009.assessment1mobpro.ui.screen
 
 import android.content.res.Configuration
+import android.net.Uri
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,6 +40,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,6 +67,7 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
     var catatan by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
     var jenisBank by remember { mutableStateOf("pemerintah") }
+    var imagePath by remember { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
         if (id == null) return@LaunchedEffect
@@ -68,6 +75,7 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
         namabank = data.namabank
         catatan = data.catatan
         jenisBank = data.jenisBank
+        imagePath = data.imagePath
     }
 
     Scaffold(
@@ -100,9 +108,9 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
                         }
 
                         if(id == null){
-                            viewModel.insert(namabank, catatan, jenisBank)
+                            viewModel.insert(namabank, catatan, jenisBank, imagePath)
                         } else {
-                            viewModel.update(id, namabank, catatan, jenisBank)
+                            viewModel.update(id, namabank, catatan, jenisBank, imagePath)
                         }
                         navController.popBackStack()
                     }) {
@@ -128,6 +136,8 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
             onDescChange = { catatan = it },
             jenisBank = jenisBank,
             onJenisBankChange = { jenisBank = it },
+            imagePath = imagePath,
+            onImagePicked = { imagePath = it },
             modifier = Modifier.padding(padding)
         )
 
@@ -147,6 +157,7 @@ fun FormDataBank(
     title: String, onTitleChange: (String) -> Unit,
     desc: String, onDescChange: (String) -> Unit,
     jenisBank: String, onJenisBankChange: (String) -> Unit,
+    imagePath: String, onImagePicked: (String) -> Unit,
     modifier: Modifier
 ){
     Column(
@@ -173,8 +184,10 @@ fun FormDataBank(
             ),
             modifier = Modifier.fillMaxWidth()
         )
-        Text(text = stringResource(R.string.jenis_bank))
 
+        ImagePickerExample(imagePath = imagePath, onImagePicked = onImagePicked)
+
+        Text(text = stringResource(R.string.jenis_bank))
         Row {
             listOf("pemerintah", "swasta").forEach { jenis ->
                 Row(
@@ -225,6 +238,40 @@ fun DeleteAction(delete: () -> Unit) {
                 }
             )
         }
+    }
+}
+
+@Composable
+fun ImagePickerExample(
+    imagePath: String,
+    onImagePicked: (String) -> Unit
+) {
+    val context = LocalContext.current
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            onImagePicked(it.toString())
+        }
+    }
+
+    Button(
+        onClick = { launcher.launch("image/*") },
+        modifier = Modifier.semantics {
+            contentDescription = context.getString(R.string.pilih_gambar)
+        }
+    ) {
+        Text(text = stringResource(R.string.pilih_gambar))
+    }
+
+    if (imagePath.isNotEmpty()) {
+        Text(
+            text = stringResource(R.string.gambar_terpilih) + ": $imagePath",
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.semantics {
+                contentDescription = context.getString(R.string.gambar_terpilih) + ": $imagePath"
+            }
+        )
     }
 }
 

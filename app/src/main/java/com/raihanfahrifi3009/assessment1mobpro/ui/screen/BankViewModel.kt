@@ -23,12 +23,13 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
         initialValue = emptyList()
     )
 
-    fun insert(namabank: String, isi: String, jenisBank: String){
+    fun insert(namabank: String, isi: String, jenisBank: String, imagePath: String){
         val bankData = BankData(
             tanggal = formatter.format(Date()),
             namabank = namabank,
             catatan = isi,
-            jenisBank = jenisBank
+            jenisBank = jenisBank,
+            imagePath = imagePath
         )
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -41,13 +42,14 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
         return dao.getBankDataById(id)
     }
 
-    fun update(id: Long, namabank: String, isi: String, jenisBank: String){
+    fun update(id: Long, namabank: String, isi: String, jenisBank: String, imagePath: String){
         val catatan = BankData(
             id = id,
             tanggal = formatter.format(Date()),
             namabank = namabank,
             catatan = isi,
-            jenisBank = jenisBank
+            jenisBank = jenisBank,
+            imagePath = imagePath
         )
 
         viewModelScope.launch(Dispatchers.IO) {

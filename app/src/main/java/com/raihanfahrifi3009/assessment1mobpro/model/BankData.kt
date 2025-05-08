@@ -10,5 +10,6 @@ data class BankData(
     val namabank: String,
     val catatan: String,
     val tanggal: String,
-    val jenisBank: String = "pemerintah"
+    val jenisBank: String = "pemerintah",
+    val imagePath: String = ""
 )

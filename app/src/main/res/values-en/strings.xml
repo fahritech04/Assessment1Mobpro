@@ -34,4 +34,7 @@
     <string name="list">List view</string>
     <string name="grid">Grid view</string>
     <string name="jenis_bank">Bank Type:</string>
+    <string name="pilih_gambar">Select Image</string>
+    <string name="gambar_terpilih">Selected Image</string>
+    <string name="deskripsi_gambar">Bank Image %1$s</string>
 </resources>
