@@ -9,5 +9,6 @@ data class BankData(
     val id: Long = 0L,
     val namabank: String,
     val catatan: String,
-    val tanggal: String
+    val tanggal: String,
+    val jenisBank: String = "pemerintah"
 )

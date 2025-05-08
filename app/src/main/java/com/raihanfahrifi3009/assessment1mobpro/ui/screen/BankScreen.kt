@@ -176,6 +176,7 @@ fun ListItem(bankData: BankData, onClick: () -> Unit){
     ) {
         Text(text = bankData.namabank, maxLines = 1, overflow = TextOverflow.Ellipsis, fontWeight = FontWeight.Bold)
         Text(text = bankData.catatan, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        Text(text = stringResource(R.string.jenis_bank) + " ${bankData.jenisBank}")
         Text(text = bankData.tanggal)
     }
 }
@@ -203,6 +204,10 @@ fun GridItem(bankData: BankData, onClick: () -> Unit){
                 text = bankData.catatan,
                 maxLines = 4,
                 overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = stringResource(R.string.jenis_bank) + " ${bankData.jenisBank}",
+                style = MaterialTheme.typography.bodySmall
             )
             Text(text = bankData.tanggal)
         }

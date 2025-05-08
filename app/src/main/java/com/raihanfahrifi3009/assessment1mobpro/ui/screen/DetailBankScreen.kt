@@ -4,9 +4,11 @@ import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -19,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -29,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -56,12 +60,14 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
     var namabank by remember { mutableStateOf("") }
     var catatan by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
+    var jenisBank by remember { mutableStateOf("pemerintah") }
 
     LaunchedEffect(Unit) {
         if (id == null) return@LaunchedEffect
         val  data = viewModel.getDataBank(id) ?: return@LaunchedEffect
         namabank = data.namabank
         catatan = data.catatan
+        jenisBank = data.jenisBank
     }
 
     Scaffold(
@@ -94,9 +100,9 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
                         }
 
                         if(id == null){
-                            viewModel.insert(namabank, catatan)
+                            viewModel.insert(namabank, catatan, jenisBank)
                         } else {
-                            viewModel.update(id, namabank, catatan)
+                            viewModel.update(id, namabank, catatan, jenisBank)
                         }
                         navController.popBackStack()
                     }) {
@@ -120,6 +126,8 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
             onTitleChange = { namabank = it },
             desc = catatan,
             onDescChange = { catatan = it },
+            jenisBank = jenisBank,
+            onJenisBankChange = { jenisBank = it },
             modifier = Modifier.padding(padding)
         )
 
@@ -138,6 +146,7 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
 fun FormDataBank(
     title: String, onTitleChange: (String) -> Unit,
     desc: String, onDescChange: (String) -> Unit,
+    jenisBank: String, onJenisBankChange: (String) -> Unit,
     modifier: Modifier
 ){
     Column(
@@ -162,8 +171,33 @@ fun FormDataBank(
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences
             ),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxWidth()
         )
+        Text(text = stringResource(R.string.jenis_bank))
+
+        Row {
+            listOf("pemerintah", "swasta").forEach { jenis ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .selectable(
+                            selected = jenisBank == jenis,
+                            onClick = { onJenisBankChange(jenis) }
+                        )
+                        .padding(end = 16.dp)
+                ) {
+                    RadioButton(
+                        selected = jenisBank == jenis,
+                        onClick = { onJenisBankChange(jenis) }
+                    )
+                    Text(
+                        text = jenis.replaceFirstChar { it.uppercase() },
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
+                }
+            }
+        }
+
     }
 }
 
