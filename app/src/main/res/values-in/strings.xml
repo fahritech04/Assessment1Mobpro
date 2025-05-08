@@ -28,4 +28,7 @@
     <string name="invalid">Judul dan isi catatan tidak boleh kosong.</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus</string>
+    <string name="pesan_hapus">Apakah anda yakin menghapus data ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
