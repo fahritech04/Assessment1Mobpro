@@ -1,7 +1,6 @@
 package com.raihanfahrifi3009.assessment1mobpro.ui.screen
 
 import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +24,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -40,6 +41,7 @@ import com.raihanfahrifi3009.assessment1mobpro.R
 import com.raihanfahrifi3009.assessment1mobpro.model.BankData
 import com.raihanfahrifi3009.assessment1mobpro.navigation.Screen
 import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
+import com.raihanfahrifi3009.assessment1mobpro.util.ViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -86,8 +88,12 @@ fun BankScreen(navController: NavHostController){
 
 @Composable
 fun ScreenContent(modifier: Modifier, navController: NavHostController) {
-    val viewModel: BankViewModel = viewModel()
-    val data = viewModel.data
+    val context = LocalContext.current
+    val factory = ViewModelFactory(context)
+
+    val viewModel: BankViewModel = viewModel(factory = factory)
+
+    val data by viewModel.data.collectAsState()
 
     if(data.isEmpty()){
         Column (

@@ -1,7 +1,7 @@
 package com.raihanfahrifi3009.assessment1mobpro.ui.screen
 
 import android.content.res.Configuration
-import android.icu.text.CaseMap.Title
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -37,13 +38,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.raihanfahrifi3009.assessment1mobpro.R
 import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
+import com.raihanfahrifi3009.assessment1mobpro.util.ViewModelFactory
 
 const val KEY_ID_BANK = "idBank"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailBankScreen(navController: NavHostController, id: Long? = null){
-    val viewModel: BankViewModel = viewModel()
+    val context = LocalContext.current
+    val factory = ViewModelFactory(context)
+
+    val viewModel: BankViewModel = viewModel(factory = factory)
 
     var namabank by remember { mutableStateOf("") }
     var catatan by remember { mutableStateOf("") }
@@ -78,7 +83,17 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {
+                        if(namabank == "" || catatan == ""){
+                            Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
+                            return@IconButton
+                        }
+
+                        if(id == null){
+                            viewModel.insert(namabank, catatan)
+                        }
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),

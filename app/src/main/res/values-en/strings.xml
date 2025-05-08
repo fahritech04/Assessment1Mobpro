@@ -25,4 +25,5 @@
     <string name="isi_catatanbank">Bank Notes Contents</string>
     <string name="simpan">Save</string>
     <string name="edit_databank">Change Bank Notes</string>
+    <string name="invalid">The title and content of the note cannot be empty.</string>
 </resources>

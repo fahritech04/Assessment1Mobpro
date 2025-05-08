@@ -25,7 +25,7 @@ abstract class BankDataDb : RoomDatabase(){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         BankDataDb::class.java,
-                        "bankdata.db"
+                        "databank.db"
                     ).build()
                     INSTANCE = instance
                 }

@@ -25,4 +25,5 @@
     <string name="isi_catatanbank">Isi Catatan Bank</string>
     <string name="simpan">Simpan</string>
     <string name="edit_databank">Ubah Catatan Bank</string>
+    <string name="invalid">Judul dan isi catatan tidak boleh kosong.</string>
 </resources>
