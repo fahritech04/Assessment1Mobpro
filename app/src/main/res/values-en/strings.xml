@@ -24,4 +24,5 @@
     <string name="nama_bank">Bank Name</string>
     <string name="isi_catatanbank">Bank Notes Contents</string>
     <string name="simpan">Save</string>
+    <string name="edit_databank">Change Bank Notes</string>
 </resources>

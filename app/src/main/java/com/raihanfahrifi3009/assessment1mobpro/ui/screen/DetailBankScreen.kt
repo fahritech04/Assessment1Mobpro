@@ -36,9 +36,11 @@ import androidx.navigation.compose.rememberNavController
 import com.raihanfahrifi3009.assessment1mobpro.R
 import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
 
+const val KEY_ID_BANK = "idBank"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailBankScreen(navController: NavHostController){
+fun DetailBankScreen(navController: NavHostController, id: Long? = null){
 
     var namabank by remember { mutableStateOf("") }
     var catatan by remember { mutableStateOf("") }
@@ -56,7 +58,10 @@ fun DetailBankScreen(navController: NavHostController){
                     }
                 },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_databank))
+                    if(id == null)
+                        Text(text = stringResource(id = R.string.tambah_databank))
+                    else
+                        Text(text = stringResource(id = R.string.edit_databank))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
