@@ -38,4 +38,5 @@
     <string name="pilih_gambar">Pilih Gambar</string>
     <string name="gambar_terpilih">Gambar terpilih</string>
     <string name="deskripsi_gambar">Gambar Bank %1$s</string>
+    <string name="showerror_bank">Kolom ini tidak boleh kosong!!!</string>
 </resources>

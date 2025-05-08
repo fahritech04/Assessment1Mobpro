@@ -35,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,18 +61,20 @@ const val KEY_ID_BANK = "idBank"
 fun DetailBankScreen(navController: NavHostController, id: Long? = null){
     val context = LocalContext.current
     val factory = ViewModelFactory(context)
-
     val viewModel: BankViewModel = viewModel(factory = factory)
 
-    var namabank by remember { mutableStateOf("") }
-    var catatan by remember { mutableStateOf("") }
-    var showDialog by remember { mutableStateOf(false) }
-    var jenisBank by remember { mutableStateOf("pemerintah") }
-    var imagePath by remember { mutableStateOf("") }
+    var namabank by rememberSaveable { mutableStateOf("") }
+    var catatan by rememberSaveable { mutableStateOf("") }
+    var jenisBank by rememberSaveable { mutableStateOf("pemerintah") }
+    var imagePath by rememberSaveable { mutableStateOf("") }
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+
+    var isNamaBankError by rememberSaveable { mutableStateOf(false) }
+    var isCatatanError by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         if (id == null) return@LaunchedEffect
-        val  data = viewModel.getDataBank(id) ?: return@LaunchedEffect
+        val data = viewModel.getDataBank(id) ?: return@LaunchedEffect
         namabank = data.namabank
         catatan = data.catatan
         jenisBank = data.jenisBank
@@ -102,7 +105,10 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if(namabank == "" || catatan == ""){
+                        isNamaBankError = namabank.isBlank()
+                        isCatatanError = catatan.isBlank()
+
+                        if (isNamaBankError || isCatatanError) {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
                             return@IconButton
                         }
@@ -114,16 +120,10 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
                         }
                         navController.popBackStack()
                     }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Check,
-                            contentDescription = stringResource(R.string.simpan),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
+                        Icon(Icons.Outlined.Check, contentDescription = stringResource(R.string.simpan))
                     }
                     if(id != null){
-                        DeleteAction {
-                            showDialog = true
-                        }
+                        DeleteAction { showDialog = true }
                     }
                 }
             )
@@ -131,17 +131,29 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
     ) { padding ->
         FormDataBank(
             title = namabank,
-            onTitleChange = { namabank = it },
+            onTitleChange = {
+                namabank = it
+                if (it.isNotBlank()) isNamaBankError = false
+            },
             desc = catatan,
-            onDescChange = { catatan = it },
+            onDescChange = {
+                catatan = it
+                if (it.isNotBlank()) isCatatanError = false
+            },
             jenisBank = jenisBank,
-            onJenisBankChange = { jenisBank = it },
+            onJenisBankChange = {
+                jenisBank = it
+            },
             imagePath = imagePath,
-            onImagePicked = { imagePath = it },
+            onImagePicked = {
+                imagePath = it
+            },
+            isNamaBankError = isNamaBankError,
+            isCatatanError = isCatatanError,
             modifier = Modifier.padding(padding)
         )
 
-        if(id != null && showDialog){
+        if (id != null && showDialog) {
             DisplayAlertDialog(
                 onDismissRequest = { showDialog = false }) {
                 showDialog = false
@@ -158,34 +170,49 @@ fun FormDataBank(
     desc: String, onDescChange: (String) -> Unit,
     jenisBank: String, onJenisBankChange: (String) -> Unit,
     imagePath: String, onImagePicked: (String) -> Unit,
+    isNamaBankError: Boolean,
+    isCatatanError: Boolean,
     modifier: Modifier
-){
+) {
     Column(
-        modifier = modifier.fillMaxSize().padding(16.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         OutlinedTextField(
             value = title,
-            onValueChange = { onTitleChange(it) },
-            label = { Text(text = stringResource(R.string.nama_bank)) },
+            onValueChange = onTitleChange,
+            label = { Text(stringResource(R.string.nama_bank)) },
             singleLine = true,
+            isError = isNamaBankError,
+            supportingText = {
+                if (isNamaBankError) Text(stringResource(R.string.showerror_bank))
+            },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
                 imeAction = ImeAction.Next
             ),
             modifier = Modifier.fillMaxWidth()
         )
+
         OutlinedTextField(
             value = desc,
-            onValueChange = { onDescChange(it) },
-            label = { Text(text = stringResource(R.string.isi_catatanbank)) },
+            onValueChange = onDescChange,
+            label = { Text(stringResource(R.string.isi_catatanbank)) },
+            isError = isCatatanError,
+            supportingText = {
+                if (isCatatanError) Text(stringResource(R.string.showerror_bank))
+            },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences
             ),
             modifier = Modifier.fillMaxWidth()
         )
 
+
         ImagePickerExample(imagePath = imagePath, onImagePicked = onImagePicked)
+
 
         Text(text = stringResource(R.string.jenis_bank))
         Row {
