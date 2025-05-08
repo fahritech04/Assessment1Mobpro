@@ -36,22 +36,22 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
 
     }
 
-//    suspend fun getDataBank(id: Long): BankData? {
-//        return dao.getDataBankById(id)
-//    }
-//
-//    fun update(id: Long, namabank: String, isi: String){
-//        val catatan = BankData(
-//            id = id,
-//            tanggal = formatter.format(Date()),
-//            namabank = namabank,
-//            catatan = isi
-//        )
-//
-//        viewModelScope.launch(Dispatchers.IO) {
-//            dao.update(catatan)
-//        }
-//    }
+    suspend fun getDataBank(id: Long): BankData? {
+        return dao.getBankDataById(id)
+    }
+
+    fun update(id: Long, namabank: String, isi: String){
+        val catatan = BankData(
+            id = id,
+            tanggal = formatter.format(Date()),
+            namabank = namabank,
+            catatan = isi
+        )
+
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.update(catatan)
+        }
+    }
 //
 //    fun delete(id: Long) {
 //        viewModelScope.launch(Dispatchers.IO) {
@@ -59,8 +59,8 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
 //        }
 //    }
 
-    fun getDataBank(id: Long): BankData? {
-        return null
-    }
+//    fun getDataBank(id: Long): BankData? {
+//        return null
+//    }
 
 }

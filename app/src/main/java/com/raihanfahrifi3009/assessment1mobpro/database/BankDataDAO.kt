@@ -17,4 +17,7 @@ interface BankDataDAO {
 
     @Query("SELECT * FROM bankdata ORDER BY tanggal DESC")
     fun getDataBank(): Flow<List<BankData>>
+
+    @Query("SELECT * FROM bankdata WHERE id = :id")
+    suspend fun getBankDataById(id: Long): BankData?
 }

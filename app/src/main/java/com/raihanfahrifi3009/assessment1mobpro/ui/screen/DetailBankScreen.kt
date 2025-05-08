@@ -91,6 +91,8 @@ fun DetailBankScreen(navController: NavHostController, id: Long? = null){
 
                         if(id == null){
                             viewModel.insert(namabank, catatan)
+                        } else {
+                            viewModel.update(id, namabank, catatan)
                         }
                         navController.popBackStack()
                     }) {
