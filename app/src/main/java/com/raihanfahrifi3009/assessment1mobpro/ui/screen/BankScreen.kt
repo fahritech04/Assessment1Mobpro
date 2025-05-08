@@ -13,7 +13,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,6 +43,8 @@ import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BankScreen(navController: NavHostController){
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,6 +65,19 @@ fun BankScreen(navController: NavHostController){
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    Toast.makeText(context, R.string.belum_bisa, Toast.LENGTH_SHORT).show()
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = stringResource(R.string.tambah_databank),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     ) { padding ->
         ScreenContent(Modifier.padding(padding))

@@ -20,4 +20,6 @@
     <string name="data_bank">Data Bank</string>
     <string name="list_kosong">Belum ada data</string>
     <string name="x_diklik">%1$s diklik!</string>
+    <string name="tambah_databank">Tambah Data Bank</string>
+    <string name="belum_bisa">Belum bisa tambah data bank.</string>
 </resources>
