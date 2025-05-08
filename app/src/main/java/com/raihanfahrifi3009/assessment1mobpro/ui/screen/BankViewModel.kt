@@ -68,4 +68,8 @@ class BankViewModel : ViewModel() {
         )
     )
 
+    fun getDataBank(id: Long): BankData? {
+        return data.find { it.id == id }
+    }
+
 }
