@@ -52,12 +52,12 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
             dao.update(catatan)
         }
     }
-//
-//    fun delete(id: Long) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            dao.deleteById(id)
-//        }
-//    }
+
+    fun delete(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.deleteBankDataById(id)
+        }
+    }
 
 //    fun getDataBank(id: Long): BankData? {
 //        return null

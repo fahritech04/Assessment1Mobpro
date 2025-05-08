@@ -27,4 +27,6 @@
     <string name="simpan">Simpan</string>
     <string name="edit_databank">Ubah Catatan Bank</string>
     <string name="invalid">Judul dan isi catatan tidak boleh kosong.</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus</string>
 </resources>

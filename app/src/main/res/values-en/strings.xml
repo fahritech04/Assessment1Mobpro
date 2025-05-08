@@ -26,4 +26,6 @@
     <string name="simpan">Save</string>
     <string name="edit_databank">Change Bank Notes</string>
     <string name="invalid">The title and content of the note cannot be empty.</string>
+    <string name="lainnya">Other options</string>
+    <string name="hapus">Delete</string>
 </resources>

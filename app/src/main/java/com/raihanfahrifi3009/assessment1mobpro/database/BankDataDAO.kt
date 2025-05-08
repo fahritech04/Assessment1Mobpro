@@ -20,4 +20,7 @@ interface BankDataDAO {
 
     @Query("SELECT * FROM bankdata WHERE id = :id")
     suspend fun getBankDataById(id: Long): BankData?
+
+    @Query("DELETE FROM bankdata WHERE id = :id")
+    suspend fun deleteBankDataById(id: Long)
 }
