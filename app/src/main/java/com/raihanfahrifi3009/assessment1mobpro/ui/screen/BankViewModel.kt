@@ -58,9 +58,4 @@ class BankViewModel(private val dao: BankDataDAO) : ViewModel() {
             dao.deleteBankDataById(id)
         }
     }
-
-//    fun getDataBank(id: Long): BankData? {
-//        return null
-//    }
-
 }
