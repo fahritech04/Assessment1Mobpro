@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Assessment 1 Mobpro</string>
+    <string name="app_name">Mobpro Assessment - Currency Conversion</string>
     <string name="title">Convert Rupiah ↔ Dollar</string>
     <string name="rptousd">Rupiah to Dollar</string>
     <string name="usdtorp">Dollar to Rupiah</string>
@@ -16,4 +16,6 @@
     <string name="tentang_aplikasi">About the App</string>
     <string name="copyright">Rupiah-Dollar Converter is an Android application to convert currency values between Rupiah (IDR) and US Dollar (USD). Users can input values in Rupiah to be converted to Dollars, or vice versa.\n\nThis application is made for Assessment 1 Mobpro.\n\nCopyright 2025 Muhammad Raihan Fahrifi.\nAll rights reserved.</string>
     <string name="kembali">Return</string>
+    <string name="bank">Bank</string>
+    <string name="data_bank">Bank Data</string>
 </resources>

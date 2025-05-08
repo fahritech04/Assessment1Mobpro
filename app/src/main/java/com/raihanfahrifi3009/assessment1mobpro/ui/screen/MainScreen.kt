@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -83,6 +84,15 @@ fun MainScreen(navController: NavHostController){
                 ),
                 actions = {
                     IconButton(onClick = {
+                        navController.navigate(Screen.Bank.route)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Outlined.AddCircle,
+                            contentDescription = stringResource(R.string.bank),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    IconButton(onClick = {
                         navController.navigate(Screen.About.route)
                     }) {
                         Icon(
@@ -91,6 +101,7 @@ fun MainScreen(navController: NavHostController){
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
+
                 }
             )
         }
