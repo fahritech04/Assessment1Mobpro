@@ -18,4 +18,6 @@
     <string name="kembali">Return</string>
     <string name="bank">Bank</string>
     <string name="data_bank">Bank Data</string>
+    <string name="list_kosong">No data yet</string>
+    <string name="x_diklik">%1$s clicked!</string>
 </resources>
