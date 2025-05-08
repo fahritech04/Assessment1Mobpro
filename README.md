@@ -19,25 +19,12 @@ Pada Assesment 2 ini, saya kembali menggunakan proyek yang sama dengan Assesment
 _In this Assessment 2, I again used the same project as Assessment 1. There are several additions to the application in this 2nd Assessment, namely:_
 
 1. **Tombol Plus disamping About. Nantinya kita bisa menambahkan beberapa bank yang ada di Indonesia maupun di Dunia** - _Plus button next to About. Later we can add several banks in Indonesia and in the world_
-<img src="Screenshot/home.png" width="250" />
-
 2. **Tampilan Bahasa Indonesia grid ketika pengaturan terang** - _Indonesian language grid display when setting is bright_
-<img src="Screenshot/light_indonesia_grid.png" width="250" />
-
 3. **Tampilan Bahasa Indonesia list ketika pengaturan terang** - _Indonesian language list display when setting is bright_
-<img src="Screenshot/light_indonesia_list.png" width="250" />
-
 4. **Tampilan Bahasa Inggris grid ketika pengaturan gelap** - _English grid display when dark setting_
-<img src="Screenshot/dark_english_grid.png" width="250" />
-
 5. **Tampilan Bahasa Inggris list ketika pengaturan gelap** - _English list display when dark setting_
-<img src="Screenshot/dark_english.png" width="250" />
-
 6. **Menampilkan dialog konfirmasi hapus data** - _Displays data deletion confirmation dialog_
-<img src="Screenshot/light_english_showdialog_delete.png" width="250" />
-
 7. **Validasi ketika menambah atau mengedit data (pada bagian ini, saya hanya memberikan validasi data harus diisi pada kolom Nama Bank & Isi Catatan Bank. Kolom input bagian Gambar boleh kosong, dan pilih jenis bank sudah otomatis antara pemerintah atau swasta)** - _Validation when adding or editing data (in this section, I only provide data validation that must be filled in the Bank Name & Bank Notes columns. The Image input column can be empty, and the bank type selection is automatic between government or private)_
-<img src="Screenshot/light_indonesia_form_validation.png" width="250" />
 
 ### Link Github
 
