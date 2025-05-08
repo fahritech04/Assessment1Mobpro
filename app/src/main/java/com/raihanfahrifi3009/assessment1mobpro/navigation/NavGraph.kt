@@ -26,7 +26,7 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
             BankScreen(navController)
         }
         composable(route = Screen.FormBaru.route) {
-            DetailBankScreen()
+            DetailBankScreen(navController)
         }
     }
 }

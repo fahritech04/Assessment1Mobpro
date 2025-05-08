@@ -38,12 +38,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.raihanfahrifi3009.assessment1mobpro.R
 import com.raihanfahrifi3009.assessment1mobpro.model.BankData
+import com.raihanfahrifi3009.assessment1mobpro.navigation.Screen
 import com.raihanfahrifi3009.assessment1mobpro.ui.theme.Assessment1MobproTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BankScreen(navController: NavHostController){
-    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -69,7 +69,7 @@ fun BankScreen(navController: NavHostController){
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    Toast.makeText(context, R.string.belum_bisa, Toast.LENGTH_SHORT).show()
+                    navController.navigate(Screen.FormBaru.route)
                 }
             ) {
                 Icon(
