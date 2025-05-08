@@ -23,4 +23,6 @@
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_databank">Tambah Data Bank</string>
     <string name="belum_bisa">Belum bisa tambah data bank.</string>
+    <string name="nama_bank">Nama Bank</string>
+    <string name="isi_catatanbank">Isi Catatan Bank</string>
 </resources>

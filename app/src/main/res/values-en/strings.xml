@@ -22,4 +22,6 @@
     <string name="x_diklik">%1$s clicked!</string>
     <string name="tambah_databank">Add Bank Data</string>
     <string name="belum_bisa">Cannot add bank data yet.</string>
+    <string name="nama_bank">Bank Name</string>
+    <string name="isi_catatanbank">Bank Notes Contents</string>
 </resources>
